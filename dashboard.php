@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// --- UPDATE: bestehenden Eintrag ändern ---
+// --- Eintrag ändern (Update)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update') {
     $entryId = (int) $_POST['entry_id'];
     $title = sanitize($_POST['title'] ?? '');
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if (strlen($title) < 2) {
         $errors[] = "Titel muss mindestens 2 Zeichen lang sein.";
     } else {
-        // WICHTIG: user_id in der WHERE-Klausel, damit niemand fremde Einträge ändern kann
+
         $stmt = $pdo->prepare("UPDATE entries SET title = ?, content = ? WHERE id = ? AND user_id = ?");
         $stmt->execute([$title, $content, $entryId, $userId]);
         header("Location: dashboard.php");
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// --- DELETE: Eintrag löschen ---
+// Eintrag löschen (Delete)
 if (isset($_GET['delete'])) {
     $entryId = (int) $_GET['delete'];
     $stmt = $pdo->prepare("DELETE FROM entries WHERE id = ? AND user_id = ?");
@@ -49,7 +49,7 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// --- Für Bearbeiten: Eintrag laden, der editiert werden soll ---
+//  Für Bearbeiten
 if (isset($_GET['edit'])) {
     $entryId = (int) $_GET['edit'];
     $stmt = $pdo->prepare("SELECT * FROM entries WHERE id = ? AND user_id = ?");
@@ -57,7 +57,7 @@ if (isset($_GET['edit'])) {
     $editEntry = $stmt->fetch();
 }
 
-// --- READ: alle Einträge des Benutzers laden ---
+
 $stmt = $pdo->prepare("SELECT * FROM entries WHERE user_id = ? ORDER BY created_at DESC");
 $stmt->execute([$userId]);
 $entries = $stmt->fetchAll();
@@ -86,7 +86,7 @@ $entries = $stmt->fetchAll();
             </div>
         <?php endif; ?>
 
-        <!-- Formular: Erstellen oder Bearbeiten -->
+
         <div class="form-container">
             <h3><?= $editEntry ? 'Eintrag bearbeiten' : 'Neuer Eintrag' ?></h3>
             <form method="POST" id="entryForm" novalidate>

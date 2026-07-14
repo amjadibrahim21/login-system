@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $passwordConfirm = $_POST['password_confirm'] ?? '';
 
-    // --- Serverseitige Validierung ---
+
     if (strlen($username) < 3) {
         $errors[] = "Benutzername muss mindestens 3 Zeichen lang sein.";
     }
@@ -35,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Speichern
     if (empty($errors)) {
-        // WICHTIG: password_hash() nutzt bcrypt (Standard) - sicher, mit Salt.
-        // NICHT sha256() oder md5() verwenden - diese sind für Passwörter ungeeignet!
+        
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");

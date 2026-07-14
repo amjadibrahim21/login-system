@@ -1,12 +1,12 @@
 <?php
-// Datenbank-Zugangsdaten
+
 $host = 'localhost';
 $dbname = 'login_system';
-$dbuser = 'root';      // Standard bei XAMPP
-$dbpass = '';          // Standard bei XAMPP: LEER (kein Passwort)
+$dbuser = 'root';      
+$dbpass = '';         
 
 try {
-    // PDO-Verbindung (sicherer als mysqli, unterstützt Prepared Statements einfach)
+    
     $pdo = new PDO(
         "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
         $dbuser,

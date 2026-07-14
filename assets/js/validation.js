@@ -1,7 +1,7 @@
 // Wartet bis das HTML komplett geladen ist
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- Validierung für Registrierungsformular ---
+    //  Validierung für Registrierungsformular 
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!isValid) {
-                e.preventDefault(); // Formular NICHT absenden, wenn Fehler vorhanden
+                e.preventDefault(); 
             }
         });
     }
 
-    // --- Validierung für Login-Formular ---
+    //  Validierung für Login-Formular 
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Validierung für Dashboard-Eintragsformular ---
+    //  Validierung für Dashboard-Eintragsformular 
     const entryForm = document.getElementById('entryForm');
     if (entryForm) {
         entryForm.addEventListener('submit', function (e) {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Hilfsfunktionen für DOM-Manipulation ---
+    //  Hilfsfunktionen für DOM-Manipulation 
     function showError(elementId, message) {
         const el = document.getElementById(elementId);
         if (el) {

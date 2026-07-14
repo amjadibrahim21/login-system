@@ -11,7 +11,7 @@ body {
     line-height: 1.6;
 }
 
-/* --- Formulare (Login/Register) --- */
+
 .form-container {
     max-width: 400px;
     margin: 60px auto;
@@ -74,7 +74,7 @@ form p {
     font-size: 14px;
 }
 
-/* --- Fehler- und Erfolgsmeldungen --- */
+
 .error-box {
     background-color: #fdecea;
     border: 1px solid #f5c6cb;

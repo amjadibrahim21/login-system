@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
-        // password_verify() prüft das Klartext-Passwort gegen den gespeicherten Hash
+
         if ($user && password_verify($password, $user['password'])) {
-            // Session-ID neu generieren gegen Session Fixation
+
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
